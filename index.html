@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Wohnung zu vergeben</title>
+
+    <style>
+        body {
+            background-image: url('as.avif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 25px;
+            max-width: 750px;
+            margin: 50px auto;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        h2, h3 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .gallery img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85%;
+            border-radius: 10px;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            user-select: none;
+        }
+
+        .prev { left: 20px; }
+        .next { right: 20px; }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Schöne 74 m² Wohnung zur Weitergabe</h2>
+
+        <h3>Bildergalerie</h3>
+
+        <div class="gallery">
+            <img src="IMG_2174.jpeg" onclick="openLightbox(0)">
+            <img src="IMG_2175.jpeg" onclick="openLightbox(1)">
+            <img src="IMG_2176.jpeg" onclick="openLightbox(2)">
+            <img src="IMG_2177.jpeg" onclick="openLightbox(3)">
+            <img src="IMG_2178.jpeg" onclick="openLightbox(4)">
+            <img src="IMG_2179.jpeg" onclick="openLightbox(5)">
+            <img src="IMG_2180.jpeg" onclick="openLightbox(6)">
+            <img src="IMG_2181.jpeg" onclick="openLightbox(7)">
+            <img src="IMG_2182.jpeg" onclick="openLightbox(8)">
+            <img src="IMG_2183.jpeg" onclick="openLightbox(9)">
+            <img src="IMG_2184.jpeg" onclick="openLightbox(10)">
+            <img src="IMG_2185.jpeg" onclick="openLightbox(11)">
+            <img src="IMG_2186.jpeg" onclick="openLightbox(12)">
+            <img src="IMG_2188.jpeg" onclick="openLightbox(13)">
+            <img src="IMG_2189.jpeg" onclick="openLightbox(14)">
+            <img src="IMG_2190.jpeg" onclick="openLightbox(15)">
+        </div>
+
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="prev" onclick="event.stopPropagation(); prevImage();">&#10094;</span>
+        <img id="lightbox-img">
+        <span class="next" onclick="event.stopPropagation(); nextImage();">&#10095;</span>
+    </div>
+
+<script>
+let images = [
+    "IMG_2174.jpeg",
+    "IMG_2175.jpeg",
+    "IMG_2176.jpeg",
+    "IMG_2177.jpeg",
+    "IMG_2178.jpeg",
+    "IMG_2179.jpeg",
+    "IMG_2180.jpeg",
+    "IMG_2181.jpeg",
+    "IMG_2182.jpeg",
+    "IMG_2183.jpeg",
+    "IMG_2184.jpeg",
+    "IMG_2185.jpeg",
+    "IMG_2186.jpeg",
+    "IMG_2188.jpeg",
+    "IMG_2189.jpeg",
+    "IMG_2190.jpeg"
+];
+
+let currentIndex = 0;
+
+function openLightbox(index) {
+    currentIndex = index;
+    document.getElementById("lightbox-img").src = images[index];
+    document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+}
+
+function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById("lightbox-img").src = images[currentIndex];
+}
+
+function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    document.getElementById("lightbox-img").src = images[currentIndex];
+}
+</script>
+
+</body>
+</html>
